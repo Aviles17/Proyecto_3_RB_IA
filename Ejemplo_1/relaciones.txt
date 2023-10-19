@@ -1,0 +1,4 @@
+Rain(none,light,heavy);Maintenance(yes,no)
+Rain(none,light,heavy);Train(on_time,delayed)
+Maintenance(yes,no);Train(on_time,delayed)
+Train(on_time,delayed);Appointment(attend,miss)
