@@ -41,6 +41,49 @@ class grafo:
         else:
             raise ValueError("No hay una raiz en el grafo, error al crear")
             
+    def get_query_prob(self, query: str, evidence: list, hidden: list, capa: str):
+        
+        for node in self.nodos:
+            if node.evento == capa:
+                n = node
+                break
+                
+        estado_anterior = []
+        Valor_Total = 1
+        for e in evidence:
+            for node in self.nodos:
+                for param in node.params:
+                    if param == e:
+                        estado_anterior.append(e)
+                        Valor_Total *= node.table[tuple(estado_anterior)]
+        
+        caminos_escondidos = {}
+        Valor_Oculto = Valor_Total
+        for h in hidden:
+            for node in self.nodos:
+                if h == node.evento:
+                    for param in node.params:
+                        estado = estado_anterior.copy()
+                        estado.append(param)
+                        Valor_Oculto *= node.table[tuple(estado)]
+                        caminos_escondidos[tuple(estado)] = Valor_Oculto
+        Suma = 0
+        for camino in caminos_escondidos.keys():
+            camino_temp = list(camino)
+            camino_temp.append(query)
+            lpadre = len(n.padres) + 1
+            Suma += caminos_escondidos[camino] * n.table[tuple(camino_temp[-lpadre:])]
+        
+        return Suma
+            
+            
+                        
+                        
+            
+            
+        
+                
+            
         
     
         

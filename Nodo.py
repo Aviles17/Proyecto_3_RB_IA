@@ -2,7 +2,7 @@ import itertools
 #Definir modulo que contiene definición del objeto Nodo
 class nodo:
     #Constructor
-    def __init__(self, nombre: str , dependencias: list, params: list, table: dir = None):
+    def __init__(self, nombre: str , dependencias: list, params: list, table: dict = None):
         self.evento = nombre
         self.params = params
         self.padres = dependencias
@@ -21,7 +21,7 @@ class nodo:
         return len(self.padres)
     
     #Metodo para crear tablas cruzadas
-    def cross_table(self, table: dir) -> bool:
+    def cross_table(self, table: dict) -> bool:
         
         empty_dir = self.create_indexes()
         if self.table == None and len(table) == len(empty_dir):
@@ -40,7 +40,7 @@ class nodo:
                 
         
         
-    def create_indexes(self) -> dir:
+    def create_indexes(self) -> dict:
         ret_dir = {}
         dependency_matrix = []
         

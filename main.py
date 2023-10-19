@@ -3,6 +3,7 @@ from Nodo import nodo
 import argparse
 import re
 
+#Santiago Botero, Cesar Maldonado y Santiago Aviles
 def manage_script_entry() -> str:
     
     parser = argparse.ArgumentParser()
@@ -22,7 +23,7 @@ def manage_example_dir(path: str):
             data = line.split(';')
             anterior_n = None
             for node in data:
-                names = re.findall(r"\b\w+\b", node)
+                names = re.findall(r"\b\w+\b", node)    
                 name = names[0]
                 params = names[1:]
                 n = nodo(name, [], params)
@@ -89,10 +90,21 @@ if __name__ == '__main__':
     PATH = manage_script_entry()
     graph = manage_example_dir(PATH)
     
+    c = "Appointment"
+    q = "attend"
+    e = ["light", "no"]
+    h = ["Train"]
+    
+    value = graph.get_query_prob(q,e,h, c)
+    
+    print(value)
+    
+    """
     for node in graph.nodos:
         print(node)
         print(node.table)
         print("")
+    """
     
     
     
