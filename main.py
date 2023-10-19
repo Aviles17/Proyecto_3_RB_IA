@@ -64,7 +64,6 @@ def manage_example_dir(path: str):
                     new_index += 1
                 
                 new_table = {}
-                print(table_matrix)
                 #Crear tuplas y diccionario
                 for row in table_matrix:
                     index_list = []
@@ -73,42 +72,27 @@ def manage_example_dir(path: str):
                             probability = float(register)
                             temp_list = index_list.copy()
                             temp_list.append(labels[row.index(register)])
-                            if tuple(temp_list) in new_table:
-                                new_dict = {}
-                                new_dict[tuple(temp_list)] = probability
-                                new_table.update(new_dict)
-                            else:
-                                new_table[tuple(temp_list)] = probability
+                            new_table[tuple(temp_list)] = probability
                         except ValueError:
                             index_list.append(register)
                 #Añadir tabla de probabilidades a el nodo
                 for node in temp_graph:
                     if node.evento == titulo:
-                        print(titulo)
                         node.cross_table(new_table)
-                
-        for node in temp_graph:
-            print(node.evento)
-            print(node.table)
-            print("")            
+            
+    return grafo(temp_graph)         
         
                     
-                            
-                
-                
-        
-        
-    
-    
-
-
-
-
 
 if __name__ == '__main__':
     
     PATH = manage_script_entry()
-    manage_example_dir(PATH)
+    graph = manage_example_dir(PATH)
+    
+    for node in graph.nodos:
+        print(node)
+        print(node.table)
+        print("")
     
     
     

@@ -21,18 +21,11 @@ class grafo:
             else:
                 return False
     
-    #Metodo para verificar si la lista es una lista de nodos
-    def verificar_integridad(self) -> bool:
-        for n in self.nodos:
-            if not isinstance(n, nodo):
-                return False
-        return True
-                
     #Metodo para arreglar lista de nodos en caso de no ser integros
     def veryfix_nodos(self, nodos: list) -> list:
         new_nodos = []
         for n in nodos:
-            if self.verificar_integridad(n):
+            if isinstance(n, nodo):
                 new_nodos.append(n)
         return new_nodos
     

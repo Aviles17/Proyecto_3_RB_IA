@@ -35,7 +35,6 @@ class nodo:
         for empty_value in empty_dir.values():
             if empty_value == -1:
                 return False
-        print(empty_dir)
         self.table = empty_dir
         return True
                 
